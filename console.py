@@ -4,15 +4,20 @@
 import cmd
 from models.base_model import BaseModel
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 from models import storage
-import inspect
 import models
 
 
 class HBNBCommand(cmd.Cmd):
     """Command line interpreter HBNB"""
     prompt = "(hbnb) "
-    class_list = ["BaseModel", "User"]
+    class_list = ["BaseModel", "User", "Place", "State",
+                "City", "Amenity", "Review"]
     def do_quit(self, args):
         """Quit command to exit the console\n"""
         return True
@@ -26,7 +31,7 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """Creates a new class instance and print the Id"""
+        """Creates a new class instance, save in JSON file and print the Id"""
         try:
             if args == "":
                 raise Exception("** class name missing **")
@@ -36,6 +41,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
         except:
             print("** class name missing **")
+        storage.save()
+        storage.reload()
 
     def do_show(self, args):
         """Prints the string representation of an instance based
@@ -124,6 +131,25 @@ class HBNBCommand(cmd.Cmd):
                     storage.reload()
             if sw == 0:
                 print("** no instance found **")
+    def default(self, args):
+        l = []
+        count = 0
+        if len(args.split(".")) > 1:
+            class_name = args.split(".")[0]
+            if class_name in HBNBCommand.class_list:
+                if args.split(".")[1] == "all()":
+                    self.do_all(class_name)
+                if args.split(".")[1] == "count()":
+                    for key, obj in storage.all().items():
+                        if key.split(".")[0] == class_name:
+                            count += 1
+                    print(count)
+                if args.split(".")[1].split("(")[0] == "show":
+                    id_ = args.split("\"")[1].split("\"")[0]
+                    self.do_show(class_name + " " + id_)
+        else:
+            cmd.Cmd.default(self, args)
+
 
 
 
