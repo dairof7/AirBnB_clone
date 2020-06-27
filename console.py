@@ -3,6 +3,7 @@
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 import inspect
 import models
@@ -11,7 +12,7 @@ import models
 class HBNBCommand(cmd.Cmd):
     """Command line interpreter HBNB"""
     prompt = "(hbnb) "
-    class_list = ["BaseModel"]
+    class_list = ["BaseModel", "User"]
     def do_quit(self, args):
         """Quit command to exit the console\n"""
         return True

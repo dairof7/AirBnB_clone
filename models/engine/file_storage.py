@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Module that contain file storage class"""
 from models.base_model import BaseModel
+from models.user import User
 import os.path
 import json
 
@@ -24,10 +25,11 @@ class FileStorage():
 
     def save(self):
         """save     """
+        d = {}
         for key, obj in FileStorage.__objects.items():
-            FileStorage.__objects[key] = obj.to_dict()
+            d[key] = obj.to_dict()
         with open(FileStorage.__file_path, "w", encoding="utf-8") as json_f:
-            json_f.write(json.dumps(FileStorage.__objects))
+            json.dump(d, json_f)
 
     def reload(self):
         """reload        """
