@@ -6,8 +6,8 @@ import json
 
 class FileStorage():
     """FileStorage    """
-    
-    __file_path = "file.json" 
+
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):
@@ -15,7 +15,7 @@ class FileStorage():
         return FileStorage.__objects
 
     def new(self, obj):
-        """new 
+        """new
         Args:
             obj ([type]): [description]
         """
