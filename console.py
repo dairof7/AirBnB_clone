@@ -11,6 +11,7 @@ from models.amenity import Amenity
 from models.review import Review
 from models import storage
 import models
+import json
 
 
 class HBNBCommand(cmd.Cmd):
@@ -43,16 +44,14 @@ class HBNBCommand(cmd.Cmd):
         """
         Creates a new class instance, save in JSON file and print the Id
         """
-        try:
-            if args == "":
-                raise Exception("** class name missing **")
+        if args == "":
+            print("** class name missing **")
+        elif args not in HBNBCommand.class_list:
+            print("** class doesn't exist **")
+        else:
             a = eval(args)()
             print(a.id)
-        except NameError:
-            print("** class doesn't exist **")
-        except:
-            print("** class name missing **")
-        a.save()
+            a.save()
 
     def do_show(self, args):
         """
@@ -107,16 +106,16 @@ class HBNBCommand(cmd.Cmd):
         Prints all string representation of all instances
         based or not on the class name
         """
-        l = []
+        list_ = []
         if args == "":
             for key, obj in storage.all().items():
-                l.append(str(obj))
-            print(l)
+                list_.append(str(obj))
+            print(list_)
         elif args in HBNBCommand.class_list:
             for key, obj in storage.all().items():
                 if args == key.split(".")[0]:
-                        l.append(str(obj))
-            print(l)
+                    list_.append(str(obj))
+            print(list_)
         else:
             print("** class doesn't exist **")
 
@@ -125,6 +124,7 @@ class HBNBCommand(cmd.Cmd):
         Updates an instance based on the class name and id by adding or
         updating attribute, saving on JSON file
         """
+        print(args)
         arg = args.split()
         sw = 0
         if len(arg) < 1:
@@ -155,23 +155,52 @@ class HBNBCommand(cmd.Cmd):
         """
         default method that perfom actions when no command it's given
         """
-        l = []
         count = 0
         if len(args.split(".")) > 1:
             class_name = args.split(".")[0]
             if class_name in HBNBCommand.class_list:
-                if args.split(".")[1] == "all()":
-                    self.do_all(class_name)
-                if args.split(".")[1] == "count()":
-                    for key, obj in storage.all().items():
-                        if key.split(".")[0] == class_name:
-                            count += 1
-                    print(count)
-                if args.split(".")[1].split("(")[0] == "show":
-                    id_ = args.split("\"")[1].split("\"")[0]
-                    self.do_show(class_name + " " + id_)
+                try:
+                    if args.split(".")[1] == "all()":
+                        self.do_all(class_name)
+                    if args.split(".")[1] == "count()":
+                        for key, obj in storage.all().items():
+                            if key.split(".")[0] == class_name:
+                                count += 1
+                        print(count)
+                    if args.split(".")[1].split("(")[0] == "show":
+                        id_ = args.split("\"")[1].split("\"")[0]
+                        self.do_show(class_name + " " + id_)
+                    if args.split(".")[1].split("(")[0] == "destroy":
+                        id_ = args.split("\"")[1].split("\"")[0]
+                        self.do_destroy(class_name + " " + id_)
+                    if args.split(".")[1].split("(")[0] == "update":
+                        arg_list = args.split(".")[1]
+                        arg_list = arg_list.split("(")[1][:-1].split(",")
+                        if "{" not in arg_list[1]:
+                            id_ = arg_list[0][1:-1]
+                            name = arg_list[1][2:-1]
+                            value = arg_list[2][1:]
+                            if value[0] == "\"":
+                                value = value[1:-1]
+                            self.do_update(class_name + " " +
+                                           id_ + " " + name + " " + value)
+                        else:
+                            id_ = arg_list[0][1:-1]
+                            arg_dict = args.split(".")[1]
+                            arg_dict = arg_dict.split("(")[1][:-1]
+                            arg_dict = arg_dict.split("{")[1]
+                            arg_dict = "{" + arg_dict
+                            #arg_dict = "{" + args.split(".")[1].split("(")[1][:-1].split("{")[1]
+                            dictionary = eval(arg_dict)
+                            for key, value in dictionary.items():
+                                print(value)
+                                self.do_update(class_name + " " + id_ +
+                                               " " + key + " " + str(value))
+                except Exception:
+                    cmd.Cmd.default(self, args)
         else:
             cmd.Cmd.default(self, args)
+
 
 if __name__ == "__main__":
     comand = HBNBCommand()
