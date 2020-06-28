@@ -141,9 +141,10 @@ class HBNBCommand(cmd.Cmd):
             in_key = (arg[0] + "." + arg[1])
             for key, obj in storage.all().items():
                 if key == in_key:
-                    value = arg[3]
+                    idx_arg = len(arg[0]) + len(arg[1]) + len(arg[2]) + 3
+                    value = args[idx_arg:]
                     if hasattr(obj, arg[2]):
-                        value = type(getattr(obj, arg[2]))(arg[3])
+                        value = type(getattr(obj, arg[2]))(args[idx_arg:])
                     setattr(obj, arg[2], value)
                     sw = 1
                     storage.save()
