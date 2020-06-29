@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-"""[summary]
-"""
+"""This file contain the class State"""
+
 from models.base_model import BaseModel
 
-class State(BaseModel):
-    """[summary]
 
-    Args:
-        BaseModel ([type]): [description]
+class State(BaseModel):
+    """
+    State class that inherits from BaseModel class
     """
     name = ""

@@ -1,9 +1,13 @@
 #!/usr/bin/python3
-"""This file contain the class user"""
+"""This file contain the class Place"""
 
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
+    """
+    Place class that inherits from BaseModel class
+    """
     city_id = ""
     user_id = ""
     name = ""
