@@ -130,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Updates an instance based on the class name and id by adding or
         updating attribute, saving on JSON file\n
-        Usage: (hbnb) update <class_name> <cls_id> <attr_name> <attr_value>
+        Usage: (hbnb) update <class_name> <cls_id> <attr_name> "<attr_value>"
         """
         print(args)
         arg = args.split()
@@ -151,6 +151,9 @@ class HBNBCommand(cmd.Cmd):
                 if key == in_key:
                     idx_arg = len(arg[0]) + len(arg[1]) + len(arg[2]) + 3
                     value = args[idx_arg:]
+                    if args[idx_arg] == "\"":
+                        idx_arg += 1
+                        value = args[idx_arg:-1]
                     if hasattr(obj, arg[2]):
                         value = type(getattr(obj, arg[2]))(args[idx_arg:])
                     setattr(obj, arg[2], value)
