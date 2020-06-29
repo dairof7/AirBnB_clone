@@ -3,10 +3,10 @@
 
 from models.base_model import BaseModel
 
+
 class User(BaseModel):
-    """User
-    Args:
-        BaseModel ([type]): [description]
+    """
+    User class that inherits from BaseModel class
     """
     email = ""
     password = ""

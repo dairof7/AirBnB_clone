@@ -25,12 +25,14 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, args):
         """
         Quit command to exit the console\n
+        Usage: (hbnb) quit
         """
         return True
 
     def do_EOF(self, args):
         """
         EOF command to exit the console\n
+        Usage: (hbnb) EOF
         """
         return True
 
@@ -42,7 +44,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """
-        Creates a new class instance, save in JSON file and print the Id
+        Creates a new class instance, save in JSON file and print the Id\n
+        Usage: (hbnb) create <class_name>
         """
         if args == "":
             print("** class name missing **")
@@ -56,7 +59,8 @@ class HBNBCommand(cmd.Cmd):
     def do_show(self, args):
         """
         Prints the string representation of an instance based
-        on the class name and id
+        on the class name and id\n
+        Usage: (hbnb) show <class_name> <class_id>
         """
         sw = 0
         arg = args.split()
@@ -78,7 +82,8 @@ class HBNBCommand(cmd.Cmd):
     def do_destroy(self, args):
         """
         Deletes an instance based on the class name and id
-        updating JSON file
+        updating JSON file\n
+        Usage: (hbnb) destroy <class_name> <class_id>
         """
         sw = 0
         arg = args.split()
@@ -104,7 +109,9 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, args):
         """
         Prints all string representation of all instances
-        based or not on the class name
+        based or not on the class name\n
+        Usage: (hbnb) all <class_name> -> to show all class_name instances\n
+        (hbnb) all -> to show all instances
         """
         list_ = []
         if args == "":
@@ -122,7 +129,8 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, args):
         """
         Updates an instance based on the class name and id by adding or
-        updating attribute, saving on JSON file
+        updating attribute, saving on JSON file\n
+        Usage: (hbnb) update <class_name> <cls_id> <attr_name> <attr_value>
         """
         print(args)
         arg = args.split()
@@ -191,7 +199,6 @@ class HBNBCommand(cmd.Cmd):
                             arg_dict = arg_dict.split("(")[1][:-1]
                             arg_dict = arg_dict.split("{")[1]
                             arg_dict = "{" + arg_dict
-                            #arg_dict = "{" + args.split(".")[1].split("(")[1][:-1].split("{")[1]
                             dictionary = eval(arg_dict)
                             for key, value in dictionary.items():
                                 print(value)
