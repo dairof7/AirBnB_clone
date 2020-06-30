@@ -7,9 +7,7 @@ import models
 
 
 class BaseModel:
-    """
-    BaseModel class
-    """
+    """BaseModel class"""
     def __init__(self, *args, **kwargs):
         """
         __init__ constructor method of the class
@@ -29,12 +27,9 @@ class BaseModel:
             models.storage.new(self)
 
     def __str__(self):
-        """
-        __str__ method that returns string representation of the instance
-
+        """__str__ method that returns string representation of the instance
         Returns:
-            [str]: instance of BaseModel string representation
-        """
+        [str]: instance of BaseModel string representation"""
         st = "[{:s}] ({:s}) {}"
         return st.format(type(self).__name__, self.id, self.__dict__)
 
