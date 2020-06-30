@@ -194,8 +194,8 @@ class HBNBCommand(cmd.Cmd):
                             value = arg_list[2][1:]
                             if value[0] == "\"":
                                 value = value[1:-1]
-                            self.do_update(class_name + " " +
-                                           id_ + " " + name + " " + value)
+                            self.do_update(class_name + "\
+ " + id_ + " " + name + " " + value)
                         else:
                             id_ = arg_list[0][1:-1]
                             arg_dict = args.split(".")[1]
@@ -205,8 +205,8 @@ class HBNBCommand(cmd.Cmd):
                             dictionary = eval(arg_dict)
                             for key, value in dictionary.items():
                                 print(value)
-                                self.do_update(class_name + " " + id_ +
-                                               " " + key + " " + str(value))
+                                self.do_update(class_name + "\
+ " + id_ + " " + key + " " + str(value))
                 except Exception:
                     cmd.Cmd.default(self, args)
         else:
