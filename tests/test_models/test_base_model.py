@@ -27,6 +27,7 @@ class Test_Base_Model_outputs(unittest.TestCase):
         """
         instance1 = BaseModel()
         self.assertEqual('<class \'str\'>', str(type(instance1.id)))
+        """hola"""
 
     def test_exec_file(self):
         """
@@ -61,6 +62,7 @@ class Test_Base_Model_outputs(unittest.TestCase):
         instance1_User = User()
         # test type of return
         self.assertEqual('<class \'dict\'>', str(type(instance1.to_dict())))
+        """hola"""
 
         updated_expected_format = instance1.updated_at.isoformat()
         created_expected_format = instance1.created_at.isoformat()
