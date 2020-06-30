@@ -5,6 +5,7 @@ import pep8
 import unittest
 from models.engine import file_storage
 from models.engine.file_storage import FileStorage
+import os
 
 
 class TestBaseModelpep8(unittest.TestCase):
@@ -35,6 +36,19 @@ class TestDocsBaseModel(unittest.TestCase):
         for func in dir(FileStorage):
             self.assertTrue(len(func.__doc__) > 0)
 
+    def test_permissions(self):
+        '''test read-write-execute permissions'''
+        read = os.access('models/engine/file_storage.py', os.R_OK)
+        self.assertTrue(read)
+        write = os.access('models/engine/file_storage.py', os.W_OK)
+        self.assertTrue(write)
+        exe = os.access('models/engine/file_storage.py', os.X_OK)
+        self.assertTrue(exe)
+
+    def test_instance(self):
+        '''check if obj is an instance of BaseModel'''
+        obj = FileStorage()
+        self.assertIsInstance(obj, FileStorage)
 
 if __name__ == "__main__":
     unittest.main()
