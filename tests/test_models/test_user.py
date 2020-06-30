@@ -7,17 +7,6 @@ from models import user
 from models.user import User
 
 
-class Test_Base_Model_outputs(unittest.TestCase):
-    """Test_Base_Model_outputs [summary]
-
-    [extended_summary]
-
-    Args:
-        unittest ([type]): [description]
-    """
-    pass
-
-
 class TestBaseModelpep8(unittest.TestCase):
     """Validate pep8"""
 
