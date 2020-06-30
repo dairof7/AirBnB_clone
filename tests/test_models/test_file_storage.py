@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 """Unittest for file_storage file: class and methods"""
 
 import pep8
@@ -49,6 +50,7 @@ class TestDocsBaseModel(unittest.TestCase):
         '''check if obj is an instance of BaseModel'''
         obj = FileStorage()
         self.assertIsInstance(obj, FileStorage)
+
 
 if __name__ == "__main__":
     unittest.main()
