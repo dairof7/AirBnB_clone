@@ -10,7 +10,7 @@ from models.amenity import Amenity
 from models.review import Review
 import os.path
 import json
-import datetime
+
 
 
 class FileStorage():
@@ -49,10 +49,8 @@ class FileStorage():
         """
         reload method that update __objects dictionary from JSON file
         """
-        try:
+        if os.path.isfile(FileStorage.__file_path):
             with open(FileStorage.__file_path, "r", encoding="utf-8") as js_f:
                 for key, obj in json.loads(js_f.read()).items():
                     obj = eval(obj['__class__'])(**obj)
                     FileStorage.__objects[key] = obj
-        except Exception:
-            pass
