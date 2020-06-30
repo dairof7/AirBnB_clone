@@ -16,8 +16,8 @@ class TestBaseModelpep8(unittest.TestCase):
         """test for base file and test_base file pep8"""
         style = pep8.StyleGuide(quiet=True)
         filestorage_pep8 = "models/engine/file_storage.py"
-        test_file_storage_pep8 = "tests/test_models/test_file_storage.py"
-        result = style.check_files([filestorage_pep8, test_file_storage_pep8])
+        t_f_s_pep8 = "tests/test_models/test_engine/test_file_storage.py"
+        result = style.check_files([filestorage_pep8, t_f_s_pep8])
         self.assertEqual(result.total_errors, 0)
 
 
