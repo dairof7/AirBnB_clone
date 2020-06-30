@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """Unittest for file_storage file: class and methods"""
 
 import pep8
