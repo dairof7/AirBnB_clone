@@ -30,8 +30,9 @@ class FileStorage():
         new method update __objects dictionary
         each time that a new object is created
         """
-        key = type(obj).__name__ + "." + obj.id
-        FileStorage.__objects[key] = obj
+        if obj:
+            key = type(obj).__name__ + "." + obj.id
+            FileStorage.__objects[key] = obj
 
     def save(self):
         """
