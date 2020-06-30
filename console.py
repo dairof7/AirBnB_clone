@@ -134,7 +134,6 @@ class HBNBCommand(cmd.Cmd):
                     setattr(obj, arg[2], value)
                     sw = 1
                     storage.save()
-                    storage.reload()
             if sw == 0:
                 print("** no instance found **")
 
