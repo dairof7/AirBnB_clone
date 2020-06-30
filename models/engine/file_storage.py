@@ -12,7 +12,6 @@ import os.path
 import json
 
 
-
 class FileStorage():
     """
     FileStorage Class that performs actions
