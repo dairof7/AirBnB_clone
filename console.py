@@ -15,38 +15,26 @@ import json
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    Command line interpreter HBNB
-    """
+    """Command line interpreter HBNB"""
     prompt = "(hbnb) "
     class_list = ["BaseModel", "User", "Place", "State\
 ", "City", "Amenity", "Review"]
 
     def do_quit(self, args):
-        """
-        Quit command to exit the console\n
-        Usage: (hbnb) quit
-        """
+        """Quit command to exit the console"""
         return True
 
     def do_EOF(self, args):
-        """
-        EOF command to exit the console\n
-        Usage: (hbnb) EOF
-        """
+        """EOF command to exit the console"""
         return True
 
     def emptyline(self):
-        """
-        Perform nothing when there's no commmand passed to the console
-        """
+        """Perform nothing when there's no commmand passed to the console"""
         pass
 
     def do_create(self, args):
-        """
-        Creates a new class instance, save in JSON file and print the Id\n
-        Usage: (hbnb) create <class_name>
-        """
+        """Creates a new class instance, save in JSON file and print the Id\n
+        Usage: (hbnb) create <class_name>"""
         if args == "":
             print("** class name missing **")
         elif args not in HBNBCommand.class_list:
@@ -57,11 +45,8 @@ class HBNBCommand(cmd.Cmd):
             a.save()
 
     def do_show(self, args):
-        """
-        Prints the string representation of an instance based
-        on the class name and id\n
-        Usage: (hbnb) show <class_name> <class_id>
-        """
+        """Prints the string representation of an instance based
+        on the class name and id"""
         sw = 0
         arg = args.split()
         if args == "":
@@ -80,11 +65,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_destroy(self, args):
-        """
-        Deletes an instance based on the class name and id
-        updating JSON file\n
-        Usage: (hbnb) destroy <class_name> <class_id>
-        """
+        """Deletes an instance based on the class name and id
+        updating JSON file\nUsage: (hbnb) destroy <class_name> <class_id>"""
         sw = 0
         arg = args.split()
         if args == "":
@@ -107,12 +89,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def do_all(self, args):
-        """
-        Prints all string representation of all instances
-        based or not on the class name\n
-        Usage: (hbnb) all <class_name> -> to show all class_name instances\n
-        (hbnb) all -> to show all instances
-        """
+        """Prints all string representation of all instances
+        based or not on the class name"""
         list_ = []
         if args == "":
             for key, obj in storage.all().items():
@@ -127,11 +105,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, args):
-        """
-        Updates an instance based on the class name and id by adding or
-        updating attribute, saving on JSON file\n
-        Usage: (hbnb) update <class_name> <cls_id> <attr_name> "<attr_value>"
-        """
+        """Updates an instance based on the class name and id by adding or
+        updating attribute, saving on JSON file"""
         print(args)
         arg = args.split()
         sw = 0
@@ -164,9 +139,7 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def default(self, args):
-        """
-        default method that perfom actions when no command it's given
-        """
+        """default method that perfom actions when no command it's given"""
         count = 0
         if len(args.split(".")) > 1:
             class_name = args.split(".")[0]
