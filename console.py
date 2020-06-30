@@ -186,7 +186,7 @@ class HBNBCommand(cmd.Cmd):
                         id_ = args.split("\"")[1].split("\"")[0]
                         self.do_destroy(class_name + " " + id_)
                     if args.split(".")[1].split("(")[0] == "update":
-                        arg_list = args.split(".")[1]
+                        arg_list = args.split(".", 1)[1]
                         arg_list = arg_list.split("(")[1][:-1].split(",")
                         if "{" not in arg_list[1]:
                             id_ = arg_list[0][1:-1]
