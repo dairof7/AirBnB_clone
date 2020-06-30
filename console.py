@@ -139,7 +139,8 @@ class HBNBCommand(cmd.Cmd):
                 print("** no instance found **")
 
     def default(self, args):
-        """default method that perfom actions when no command it's given"""
+        """default method that perfom actions when no command it's given
+        """
         count = 0
         if len(args.split(".")) > 1:
             class_name = args.split(".")[0]
@@ -182,8 +183,10 @@ class HBNBCommand(cmd.Cmd):
  " + id_ + " " + key + " " + str(value))
                 except Exception:
                     cmd.Cmd.default(self, args)
+        """hola"""
         else:
             cmd.Cmd.default(self, args)
+        """hola"""
 
 
 if __name__ == "__main__":
