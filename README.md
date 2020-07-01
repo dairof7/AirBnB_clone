@@ -143,4 +143,4 @@ This project has been tested on Ubuntu 14.06.6 LTS
 ---
 
 * [Jose Alonso Restrepo](https://github.com/JoseR98) Software Engineering student at [Holberton School](https://www.holbertonschool.com/co)
-* [Dairo Facundo Duarte](https://) - Software Engineering student at [Holberton School](https://www.holbertonschool.com/co)
+* [Dairo Facundo Duarte](https://github.com/dairof7) - Software Engineering student at [Holberton School](https://www.holbertonschool.com/co)
