@@ -107,7 +107,6 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, args):
         """Updates an instance based on the class name and id by adding or
         updating attribute, saving on JSON file"""
-        print(args)
         arg = args.split()
         sw = 0
         if len(arg) < 1:
@@ -136,6 +135,7 @@ class HBNBCommand(cmd.Cmd):
                     storage.save()
             if sw == 0:
                 print("** no instance found **")
+                return -1
 
     def default(self, args):
         """default method that perfom actions when no command it's given"""
@@ -176,9 +176,10 @@ class HBNBCommand(cmd.Cmd):
                             arg_dict = "{" + arg_dict
                             dictionary = eval(arg_dict)
                             for key, value in dictionary.items():
-                                print(value)
-                                self.do_update(class_name + "\
+                                ret = self.do_update(class_name + "\
  " + id_ + " " + key + " " + str(value))
+                                if ret == -1:
+                                    break
                 except Exception:
                     cmd.Cmd.default(self, args)
         else:
