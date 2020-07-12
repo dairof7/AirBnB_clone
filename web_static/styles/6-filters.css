@@ -29,7 +29,7 @@
     border-right: solid 1px #DDDDDD;
 }
 
-.amenities {
+.filters .amenities {
     height: 100%;
     width: 25%;
 
@@ -49,7 +49,7 @@
     margin-bottom: 17px;
 }
 
-.locations section, .amenities section {
+.locations section, .filters .amenities section {
     background-color: #FAFAFA;
     border-radius: 4px;
     width: 100%;
@@ -69,18 +69,20 @@
     margin-left: -1px;
 }
 
-li {
+.filters li {
+
     list-style-type: none;
-    padding: 2px;
+    padding: 4px;
 }
 
-ul {
+.filters ul {
+
     margin: 0;
     margin-bottom: 10px;
 }
 
 
-h2 {
+.filters h2 {
     font-size: 16px;
     margin: 10px 0 0 20px;
 }
