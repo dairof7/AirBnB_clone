@@ -41,7 +41,6 @@
     margin: 0px;
     padding: 0px;
     margin-bottom: 12px;
-
 }
 
 .box_top{
@@ -108,7 +107,7 @@
 }
 
 .places .amenities ul{
-    padding-inline-start: 0px;
+    padding-left: 0px;
 }
 
 .places .amenities li {
@@ -172,6 +171,6 @@ margin-top: 40px;
 }
 
 .places .reviews ul {
-    padding-inline-start: 0px;
+        padding-left: 0px;
 }
 
